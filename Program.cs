@@ -49,8 +49,14 @@ namespace ValidadorPeon
                     var actual = arreglo[i];
 
 
-                    if (i == 0 && (actual == "B2" || actual == "B3"))
-                        posicionfinal = true;
+                    if (i == 0)
+                    {
+                        if (actual == "B2" || actual == "B3")
+                            posicionfinal = true;
+                        else
+                            posicionfinal = false;
+                    }
+                        
 
                     if (arreglo[0] == "B1")
                     {
@@ -71,7 +77,31 @@ namespace ValidadorPeon
 
                     if (actual == "B3")
                     {
-                        if(arreglo[i + 1]==)
+                        if(arreglo[i + 1]=="B4")
+                            posicionfinal = true;
+                        else
+                            posicionfinal = false;
+                    }
+
+                    if (actual == "B4")
+                    {
+                        if (arreglo[i + 1] == "B5")
+                            posicionfinal = true;
+                        else
+                            posicionfinal = false;
+                    }
+
+                    if (actual == "B5")
+                    {
+                        if (arreglo[i + 1] == "B6")
+                            posicionfinal = true;
+                        else
+                            posicionfinal = false;
+                    }
+
+                    if(actual=="B6")
+                    {
+                        posicionfinal = false;
                     }
                 }
             }
