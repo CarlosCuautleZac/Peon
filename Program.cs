@@ -77,32 +77,34 @@ namespace ValidadorPeon
 
                     if (actual == "B3")
                     {
-                        if(arreglo[i + 1]=="B4")
+                        if(arreglo[i + 1]=="B4" || arreglo[i + 1] == "A4")
                             posicionfinal = true;
                         else
                             posicionfinal = false;
                     }
 
-                    if (actual == "B4")
+                    if (actual == "B4"|| actual=="A4")
                     {
-                        if (arreglo[i + 1] == "B5")
+                        if (arreglo[i + 1] == "B5"|| arreglo[i + 1] == "A5")
                             posicionfinal = true;
                         else
                             posicionfinal = false;
                     }
 
-                    if (actual == "B5")
+                    if (actual == "B5" || actual == "A5")
                     {
-                        if (arreglo[i + 1] == "B6")
+                        if (arreglo[i + 1] == "B6"|| arreglo[i + 1] == "A6")
                             posicionfinal = true;
                         else
                             posicionfinal = false;
                     }
 
-                    if(actual=="B6")
+                    if(actual=="B6" || actual =="A6")
                     {
                         posicionfinal = false;
                     }
+
+                    
                 }
             }
 
