@@ -14,7 +14,8 @@ namespace ValidadorPeon
             //Con fines de simplificar el funcionamiento, convertimos a mayusculas la entrada, asi tenemos una cadena uniforme
             movimientos = movimientos.ToUpper();
             //Esta propiedad nos va a indicar si la cadena es valida o invalida
-            bool valido=false;
+            bool valido = false;
+            bool posicionfinal = false;
 
             //Aqui dividimos la cadena larga, en movimientos separados, para trabajar movimiento por movimiento (palabra por palabra) 
             string[] arreglo = movimientos.Split(' ');
@@ -28,7 +29,7 @@ namespace ValidadorPeon
                     valido = false;
                     break;
                 }
-                    
+
                 //Aqui con expresiones regulares validamos las palabras
                 if (Regex.IsMatch(item, "^[A-F]{1}[1-6]{1}"))
                     valido = true;
@@ -38,6 +39,44 @@ namespace ValidadorPeon
 
             //Aqui si termina el programa, si es valido o no se nos dira al final
             Console.WriteLine(valido);
+
+            if (valido)
+            {
+                //Tenemos que definir un tama;o para el for pero este tiene que ser menor al tama;o del arreglo ya que tenemos que validar
+                //la posicion final
+                for (int i = 0; i < arreglo.Length - 1; i++)
+                {
+                    var actual = arreglo[i];
+
+
+                    if (i == 0 && (actual == "B2" || actual == "B3"))
+                        posicionfinal = true;
+
+                    if (arreglo[0] == "B1")
+                    {
+                        posicionfinal = false;
+                        break;
+                    }
+
+
+
+                    if (actual == "B2")
+                    {
+                        if (arreglo[i + 1] == "B3")
+                            posicionfinal = true;
+                        else
+                            posicionfinal = false;
+                    }
+
+
+                    if (actual == "B3")
+                    {
+                        if(arreglo[i + 1]==)
+                    }
+                }
+            }
+
+            Console.WriteLine(posicionfinal);
 
         }
     }
