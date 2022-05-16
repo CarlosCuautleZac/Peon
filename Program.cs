@@ -14,7 +14,7 @@ namespace ValidadorPeon
             //Con fines de simplificar el funcionamiento, convertimos a mayusculas la entrada, asi tenemos una cadena uniforme
             movimientos = movimientos.ToUpper();
             //Esta propiedad nos va a indicar si la cadena es valida o invalida
-            bool valido = false;
+            bool espalabravalida = false;
             bool posicionfinal = false;
 
             //Aqui dividimos la cadena larga, en movimientos separados, para trabajar movimiento por movimiento (palabra por palabra) 
@@ -26,21 +26,22 @@ namespace ValidadorPeon
                 //En caso de que el largo de cada palabra sea mayor a 2, el programa se rompe y no seria valido
                 if (item.Length != 2)
                 {
-                    valido = false;
+                    espalabravalida = false;
                     break;
                 }
 
                 //Aqui con expresiones regulares validamos las palabras
                 if (Regex.IsMatch(item, "^[A-F]{1}[1-6]{1}"))
-                    valido = true;
+                    espalabravalida = true;
                 else
-                    valido = false;
+                    espalabravalida = false;
             }
 
             //Aqui si termina el programa, si es valido o no se nos dira al final
-            Console.WriteLine(valido);
+            if (espalabravalida)
+                Console.WriteLine("Palabra Valida");
 
-            if (valido)
+            if (espalabravalida)
             {
                 //Tenemos que definir un tama;o para el for pero este tiene que ser menor al tama;o del arreglo ya que tenemos que validar
                 //la posicion final
@@ -56,7 +57,7 @@ namespace ValidadorPeon
                         else
                             posicionfinal = false;
                     }
-                        
+
 
                     if (arreglo[0] == "B1")
                     {
@@ -77,15 +78,15 @@ namespace ValidadorPeon
 
                     if (actual == "B3")
                     {
-                        if(arreglo[i + 1]=="B4" || arreglo[i + 1] == "A4")
+                        if (arreglo[i + 1] == "B4" || arreglo[i + 1] == "A4")
                             posicionfinal = true;
                         else
                             posicionfinal = false;
                     }
 
-                    if (actual == "B4"|| actual=="A4")
+                    if (actual == "B4" || actual == "A4")
                     {
-                        if (arreglo[i + 1] == "B5"|| arreglo[i + 1] == "A5")
+                        if (arreglo[i + 1] == "B5" || arreglo[i + 1] == "A5")
                             posicionfinal = true;
                         else
                             posicionfinal = false;
@@ -93,22 +94,34 @@ namespace ValidadorPeon
 
                     if (actual == "B5" || actual == "A5")
                     {
-                        if (arreglo[i + 1] == "B6"|| arreglo[i + 1] == "A6")
+                        if (arreglo[i + 1] == "B6" || arreglo[i + 1] == "A6")
                             posicionfinal = true;
                         else
                             posicionfinal = false;
                     }
 
-                    if(actual=="B6" || actual =="A6")
+                    if (actual == "B6" || actual == "A6")
                     {
                         posicionfinal = false;
                     }
 
-                    
+
                 }
+
+                if (posicionfinal)
+                {
+                    if (arreglo[arreglo.Length - 1] == "A6" || arreglo[arreglo.Length - 1] == "B6")
+                        Console.WriteLine("Tu peon se ha convertido en una reina!");
+                    else
+                        Console.WriteLine("Movimientos validos");
+                }
+
+                else
+                    Console.WriteLine("Movimientos invalidos!");
+               
             }
 
-            Console.WriteLine(posicionfinal);
+
 
         }
     }
