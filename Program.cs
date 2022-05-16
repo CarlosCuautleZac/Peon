@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace ValidadorPeon
@@ -18,7 +19,7 @@ namespace ValidadorPeon
             bool posicionfinal = false;
 
             //Aqui dividimos la cadena larga, en movimientos separados, para trabajar movimiento por movimiento (palabra por palabra) 
-            string[] arreglo = movimientos.Split(' ');
+            string[] arreglo = movimientos.Split(' ').Where(x => x != "").ToArray();
 
             //En este for iremos recorriendo cada palabra por palabra para revisar si es valida o  no
             foreach (var item in arreglo)
@@ -41,72 +42,87 @@ namespace ValidadorPeon
             if (espalabravalida)
                 Console.WriteLine("Palabra Valida");
 
+
+
             if (espalabravalida)
             {
                 //Tenemos que definir un tama;o para el for pero este tiene que ser menor al tama;o del arreglo ya que tenemos que validar
                 //la posicion final
-                for (int i = 0; i < arreglo.Length - 1; i++)
+
+                if (arreglo.Length == 1)
                 {
-                    var actual = arreglo[i];
+                    var actual = arreglo[0];
 
-
-                    if (i == 0)
-                    {
-                        if (actual == "B2" || actual == "B3")
-                            posicionfinal = true;
-                        else
-                            posicionfinal = false;
-                    }
-
-
-                    if (arreglo[0] == "B1")
-                    {
+                    if (actual == "B2" || actual == "B3")
+                        posicionfinal = true;
+                    else
                         posicionfinal = false;
-                        break;
-                    }
-
-
-
-                    if (actual == "B2")
-                    {
-                        if (arreglo[i + 1] == "B3")
-                            posicionfinal = true;
-                        else
-                            posicionfinal = false;
-                    }
-
-
-                    if (actual == "B3")
-                    {
-                        if (arreglo[i + 1] == "B4" || arreglo[i + 1] == "A4")
-                            posicionfinal = true;
-                        else
-                            posicionfinal = false;
-                    }
-
-                    if (actual == "B4" || actual == "A4")
-                    {
-                        if (arreglo[i + 1] == "B5" || arreglo[i + 1] == "A5")
-                            posicionfinal = true;
-                        else
-                            posicionfinal = false;
-                    }
-
-                    if (actual == "B5" || actual == "A5")
-                    {
-                        if (arreglo[i + 1] == "B6" || arreglo[i + 1] == "A6")
-                            posicionfinal = true;
-                        else
-                            posicionfinal = false;
-                    }
-
-                    if (actual == "B6" || actual == "A6")
-                    {
-                        posicionfinal = false;
-                    }
-
-
                 }
+
+                else
+                    for (int i = 0; i < arreglo.Length - 1; i++)
+                    {
+                        var actual = arreglo[i];
+
+
+                        if (i == 0)
+                        {
+                            if (actual == "B2" || actual == "B3")
+                                posicionfinal = true;
+                            else
+                                posicionfinal = false;
+                        }
+
+
+                        if (arreglo[0] == "B1")
+                        {
+                            posicionfinal = false;
+                            break;
+                        }
+
+
+
+                        if (actual == "B2")
+                        {
+                            if (arreglo[i + 1] == "B3")
+                                posicionfinal = true;
+                            else
+                                posicionfinal = false;
+                        }
+
+
+                        if (actual == "B3")
+                        {
+                            if (arreglo[i + 1] == "B4" || arreglo[i + 1] == "A4")
+                                posicionfinal = true;
+                            else
+                                posicionfinal = false;
+                        }
+
+                        if (actual == "B4" || actual == "A4")
+                        {
+                            if (arreglo[i + 1] == "B5" || arreglo[i + 1] == "A5")
+                                posicionfinal = true;
+                            else
+                                posicionfinal = false;
+                        }
+
+                        if (actual == "B5" || actual == "A5")
+                        {
+                            if (arreglo[i + 1] == "B6" || arreglo[i + 1] == "A6")
+                                posicionfinal = true;
+                            else
+                                posicionfinal = false;
+                        }
+
+                        if (actual == "B6" || actual == "A6")
+                        {
+                            posicionfinal = false;
+                        }
+
+                        if (posicionfinal == false)
+                            break;
+                    }
 
                 if (posicionfinal)
                 {
@@ -120,7 +136,7 @@ namespace ValidadorPeon
                 //si no fueron validos sus movimientos
                 else
                     Console.WriteLine("Movimientos invalidos!");
-               
+
             }
 
 
