@@ -110,12 +110,14 @@ namespace ValidadorPeon
 
                 if (posicionfinal)
                 {
+                    //Si termina en el inicio dle oponente 
                     if (arreglo[arreglo.Length - 1] == "A6" || arreglo[arreglo.Length - 1] == "B6")
                         Console.WriteLine("Tu peon se ha convertido en una reina!");
+                    //si termina en otro lugar
                     else
                         Console.WriteLine("Movimientos validos");
                 }
-
+                //si no fueron validos sus movimientos
                 else
                     Console.WriteLine("Movimientos invalidos!");
                
